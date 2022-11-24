@@ -1,15 +1,16 @@
 # Import the required libraries
-from torchvision.io import read_image must install torch and/or torchvision
+from torchvision.io import read_image
 import time
-import pygame.camera # must install pygame
+import pygame.camera
+import pygame
 import os
 
-os.chdir("****path*****/assets")
+os.chdir("D:/Coding Projects/stayoutofmyroom/assets")
 list_of_files = os.listdir()
 for m in range(0, len(list_of_files)-1):
     os.remove(list_of_files[m])
 counter3 = 0
-image = None
+image = pygame.SurfaceType
 slope = []
 
 
@@ -31,7 +32,9 @@ def check_captures():
 
         for a in range(0, (size_y - 1)):
             for b in range(0, (size_x - 1)):  # range(0, (x[2] - 1))
-                if (c[0][15 * a][15 * b] + 10 >= d[0][15 * a][15 * b] <= c[0][15 * a][15 * b] - 10) and (c[1][15 * a][15 * b] + 10 >= d[1][15 * a][15 * b] <= c[1][15 * a][15 * b] - 10) and (c[2][15 * a][15 * b] + 10 >= d[2][15 * a][15 * b] <= c[2][15 * a][15 * b] - 10):
+                if (c[0][15 * a][15 * b] + 10 >= d[0][15 * a][15 * b] <= c[0][15 * a][15 * b] - 10) and \
+                        (c[1][15 * a][15 * b] + 10 >= d[1][15 * a][15 * b] <= c[1][15 * a][15 * b] - 10) and \
+                        (c[2][15 * a][15 * b] + 10 >= d[2][15 * a][15 * b] <= c[2][15 * a][15 * b] - 10):
                     pass
                 else:
                     counter += 1
@@ -64,7 +67,7 @@ def check_captures():
 
 def capture_img_():
     print("started")
-    pygame.camera.init()
+    pygame.camera.init(None)
     camlist = pygame.camera.list_cameras()
     cam = pygame.camera.Camera(camlist[0], (1920, 1080), "rgb")
     cam.start()
@@ -76,6 +79,7 @@ def capture_img_():
 
         pygame.image.save(image, ("pic" + str(counter3) + ".jpg"))
         check_captures()
+
         counter3 += 1
 
 
@@ -84,10 +88,12 @@ def save_img_to_caught():
         return
     print("caught")
     timelist_ = time.localtime()
-    os.chdir("****path*****/caught")
+    os.chdir("D:/Coding Projects/stayoutofmyroom/caught")
     pygame.image.save(image, (str(timelist_[0]) + "__" + str(timelist_[1]) + "__" + str(timelist_[2]) + "__" +
                               str(timelist_[3]) + "_" + str(timelist_[4]) + "_" + str(timelist_[5]) + ".jpg"))
-    os.chdir("****path*****/assets")
+    name = f"{timelist_[0]}__{str(timelist_[1])}__{str(timelist_[2])}__{str(timelist_[3])}_{str(timelist_[4])}_{str(timelist_[5])}.jpg"
+    os.chdir("D:/Coding Projects/stayoutofmyroom/assets")
 
 
+time.sleep(10)
 capture_img_()
